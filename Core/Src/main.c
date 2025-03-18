@@ -98,15 +98,14 @@ int main(void)
 				f_adc = (float)(g_adc_dma_buf[i] * 3.3f / 4095.0f);
 				sendData(f_adc, 4);		
 			}
-      g_adc_dma_sta = 0;
-      /* 重新启动ADC采样 */
-			HAL_ADC_Start(&hadc1);
-      HAL_ADC_Start_DMA(&hadc1, (uint32_t*)g_adc_dma_buf, ADC_DMA_BUF_SIZE);
+      g_adc_dma_sta = 0;    
     }
+		/* 重新启动ADC采样 */
+//		HAL_ADC_Start(&hadc1);
+		HAL_ADC_Start_DMA(&hadc1, (uint32_t*)g_adc_dma_buf, ADC_DMA_BUF_SIZE);
 
   }
 	
-
 }
 
 /**

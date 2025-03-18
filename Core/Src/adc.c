@@ -44,7 +44,7 @@ void MX_ADC1_Init(void)
 //	hadc1.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T8_TRGO;
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   hadc1.Init.NbrOfConversion = 1;
-  hadc1.Init.DMAContinuousRequests = DISABLE;  // 传输固定个数的数据
+  hadc1.Init.DMAContinuousRequests = ENABLE;  // 传输固定个数的数据
   hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
   if (HAL_ADC_Init(&hadc1) != HAL_OK)
   {

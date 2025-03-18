@@ -53,7 +53,8 @@ void MX_DMA_Init(void)
 	hdma_adc1.Init.MemInc = DMA_MINC_ENABLE;
 	hdma_adc1.Init.PeriphDataAlignment = DMA_PDATAALIGN_HALFWORD;
 	hdma_adc1.Init.MemDataAlignment = DMA_MDATAALIGN_HALFWORD;
-	hdma_adc1.Init.Mode = DMA_NORMAL;
+//	hdma_adc1.Init.Mode = DMA_NORMAL;
+	hdma_adc1.Init.Mode = DMA_CIRCULAR;
 	hdma_adc1.Init.Priority = DMA_PRIORITY_HIGH;
 	hdma_adc1.Init.FIFOMode = DMA_FIFOMODE_DISABLE;
 	if (HAL_DMA_Init(&hdma_adc1) != HAL_OK)
@@ -75,18 +76,18 @@ void MX_DMA_Init(void)
 }
 void HAL_DMA_XferCpltCallback(DMA_HandleTypeDef *hdma)
 {
-  printf("Enter XferCpltCallback\r\n");  // 添加入口打印  
-	if(hdma == &hdma_adc1)
-	{
-			printf("ADC1 DMA Complete\r\n");
-			g_adc_dma_sta = 1;
-			// 暂时注释掉Stop
-			// HAL_ADC_Stop_DMA(&hadc1);
-	}
-	else
-	{
-			printf("Unknown DMA Complete\r\n");
-	}
+//  printf("Enter XferCpltCallback\r\n");  // 添加入口打印  
+//	if(hdma == &hdma_adc1)
+//	{
+//			printf("ADC1 DMA Complete\r\n");
+//			g_adc_dma_sta = 1;
+//			// 暂时注释掉Stop
+//			HAL_ADC_Stop_DMA(&hadc1);
+//	}
+//	else
+//	{
+//			printf("Unknown DMA Complete\r\n");
+//	}
 }
 
 

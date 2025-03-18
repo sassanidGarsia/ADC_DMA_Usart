@@ -210,6 +210,7 @@ void DMA2_Stream0_IRQHandler(void)
 {
 	printf("DMA_IRQHandler RUN \r\n");	
 	// 添加调试代码，检查具体是哪个中断标志被触发
+	DMA_Check_Flags(&hdma_adc1);
     if(__HAL_DMA_GET_FLAG(&hdma_adc1, DMA_FLAG_TCIF0_4))
 		{
       printf("Transfer Complete Flag Set\r\n");
@@ -218,9 +219,34 @@ void DMA2_Stream0_IRQHandler(void)
 //	HAL_DMA_IRQHandler(&hdma_adc1);
 //	/* 设置 DMA 传输完成标志 */
 	    g_adc_dma_sta = 1;  // 确保 `while(1)` 中的 `if (g_adc_dma_sta == 1)` 能够执行
-//			HAL_ADC_Stop_DMA(&hadc1);
+			HAL_ADC_Stop_DMA(&hadc1);
 		}
 	
+}
+
+void DMA_Check_Flags(DMA_HandleTypeDef *hdma)
+{
+    printf("\r\nDMA Flags Status:\r\n");
+    
+    // 检查传输完成标志
+    printf("TCIF: %d\r\n", 
+           (DMA2->LISR & DMA_FLAG_TCIF0_4) ? 1 : 0);
+    
+    // 检查半传输标志
+    printf("HTIF: %d\r\n", 
+           (DMA2->LISR & DMA_FLAG_HTIF0_4) ? 1 : 0);
+    
+    // 检查传输错误标志
+    printf("TEIF: %d\r\n", 
+           (DMA2->LISR & DMA_FLAG_TEIF0_4) ? 1 : 0);
+    
+    // 检查直接模式错误标志
+    printf("DMEIF: %d\r\n", 
+           (DMA2->LISR & DMA_FLAG_DMEIF0_4) ? 1 : 0);
+    
+    // 检查FIFO错误标志
+    printf("FEIF: %d\r\n", 
+           (DMA2->LISR & DMA_FLAG_FEIF0_4) ? 1 : 0);
 }
 
 

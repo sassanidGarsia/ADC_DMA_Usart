@@ -42,6 +42,8 @@ void MX_DMA_Init(void);
 
 /* USER CODE BEGIN Prototypes */
 void HAL_DMA_XferCpltCallback(DMA_HandleTypeDef *hdma);
+
+void DMA_Check_Flags(DMA_HandleTypeDef *hdma);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus
